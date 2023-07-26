@@ -1,0 +1,166 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<title>Python Flask Upload and display image</title>-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p><h1 align="center">Python Flask Upload and display image</h1 align="center"></p>-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--    <h2>Select a file to upload</h2>-->
+<!--    <p>-->
+<!--        {% with messages = get_flashed_messages() %}-->
+<!--          {% if messages %}-->
+<!--            <div class="alert alert-primary" role="alert">-->
+
+<!--            <ul>-->
+<!--            {% for message in messages %}-->
+<!--              <li>{{ message }}</li>-->
+<!--            {% endfor %}-->
+<!--            </ul>-->
+<!--            </div>-->
+<!--          {% endif %}-->
+<!--        {% endwith %}-->
+<!--    </p>-->
+<!--    {% if filename %}-->
+<!--        <div>-->
+<!--            <img src="{{ url_for('display_image', filename=filename) }}">-->
+<!--        </div>-->
+<!--    {% endif %}-->
+<!--    <form method="post" action="/" enctype="multipart/form-data">-->
+<!--        <dl>-->
+<!--            <p>-->
+<!--                <input type="file" name="file" class="form-control" autocomplete="off" required>-->
+<!--            </p>-->
+<!--        </dl>-->
+<!--        <p>-->
+<!--            <input type="submit" value="Submit" class="btn btn-info">-->
+<!--        </p>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Flask Upload and display image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f8f8;
+        }
+        .page-header {
+            background-color: #3498db;
+            color: #fff;
+            margin-bottom: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 600px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #f0ad4e;
+            color: #fff;
+            border-radius: 3px;
+        }
+        .custom-file-upload:hover {
+            background-color: #d9534f;
+        }
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="page-header text-center">
+        <h1>Detecting circles in an image</h1>
+<!--        <p>Resize this responsive page to see the effect!</p>-->
+    </div>
+
+    <div>
+        <div class="bg-warning" role="alert" style="margin: 10px">
+            {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-primary" role="alert">
+
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <form method="post" action="/" enctype="multipart/form-data" style="margin: 10px">
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="glyphicon glyphicon-upload"></i> Select a file to upload
+                </label>
+                <input id="file-upload" type="file" name="file" autocomplete="off" required>
+                <label class="text-center custom-file-upload" for="area" style="margin:10px">
+                    Minimum-Area:
+                </label>
+                <input type="number" id="area" name="area">
+                <br/>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="row">
+            <div class="thumbnail text-center" style="margin: 10px; ">
+                {% if filename %}
+
+                <div class="card text-center" style="object-fit: cover">
+                  <img class="card-img-top" src="{{ url_for('display_image', filename=filename) }}" alt="Uploaded Image" style="height: 100%; width: 100%">
+                  <div class="card-body">
+                    <p class="card-text">Original Image</p>
+                  </div>
+                </div>
+
+                <div class="card text-center" style="object-fit: cover;">
+                  <img class="card-img-top" src={{resultpath}} alt="Uploaded Image" style="height: 100%; width: 100%">
+                  <div class="card-body">
+                    <p class="card-text">Detected Image</p>
+                  </div>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>
