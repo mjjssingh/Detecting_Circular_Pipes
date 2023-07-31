@@ -16,7 +16,7 @@ To run this project, you will need the following dependencies:
 
 1. Clone this repository to your local machine:
 ```bash
-git clone https://github.com/your-username/pipe-detection-web-app.git
+git clone https://github.com/mjjssingh/pipe-detection-web-app.git
 cd pipe-detection-web-app
 ```
 
